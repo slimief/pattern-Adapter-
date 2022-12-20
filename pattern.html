@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Engine2{
+            simpleInterface(){
+                console.log('v6');
+            }
+        }
+
+        class EngineV8{
+            complecatedInterface(){
+                console.log('v8');
+            }
+        }
+
+        class EngineV8Adapter{
+            constructor(engine){
+                this.engine = engine;
+            }
+        
+            simpleInterface(){
+                this.engine.complecatedInterface();
+            }
+        }
+
+        class Auto{
+            startEngine(engine){
+                engine.simpleInterface();
+                
+            }
+        }
+
+        const myCar = new Auto();
+        const oldEngine = new Engine2();
+        myCar.startEngine(oldEngine);
+
+        const engineAdapter  = new EngineV8Adapter(new EngineV8());
+        myCar.startEngine(engineAdapter);
+
+    </script>
+</body>
+</html>
